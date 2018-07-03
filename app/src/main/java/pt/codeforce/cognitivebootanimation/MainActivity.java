@@ -45,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
             os.writeBytes(command);
             os.flush();
 
+            os.writeBytes("mount -o remount,ro /system\n");
+            os.flush();
+
             os.writeBytes("exit\n");
             os.flush();
 
