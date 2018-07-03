@@ -44,8 +44,7 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("command:" + command);
             os.writeBytes(command);
             os.flush();
-            //copyAssets();
-            //End process
+
             os.writeBytes("exit\n");
             os.flush();
 
@@ -54,57 +53,9 @@ public class MainActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-//        try{
-//            Process su = Runtime.getRuntime().exec("su");
-//            DataOutputStream outputStream = new DataOutputStream(su.getOutputStream());
-//
-//            try {
-//                outputStream.writeBytes("mount -o rw,remount /system\n");
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//            outputStream.flush();
-//            outputStream.writeBytes("exit\n");
-//            outputStream.flush();
-//            su.waitFor();
-//            outputStream.close();
-//            System.out.println("getExternalStorageDirectory:" + Environment.getExternalStorageDirectory().getAbsolutePath());
-//
-//            System.out.println("-----------------------------------------after copyAssets");
-//
-//        }catch(Exception e){
-//                e.printStackTrace();
-//        }
-//        try {
-//            //Process process = Runtime.getRuntime().exec(new String[] { "su", "-c", "mount -o rw,remount /system"});
-//            Process su = Runtime.getRuntime().exec("su -c mount -o rw,remount /system\n");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-        // copyAssets();
+
         System.out.println("getExternalStorageDirectory:" + Environment.getExternalStorageDirectory().getAbsolutePath());
 
-//        try{
-//            Process su = Runtime.getRuntime().exec("su");
-//            DataOutputStream outputStream = new DataOutputStream(su.getOutputStream());
-//
-//            try {
-//                System.out.println("getExternalFilesDir:" + getExternalFilesDir(null) + "/bootanimation.zip");
-//                outputStream.writeBytes("su -c cp " + getExternalFilesDir(null) +  "/bootanimation.zip" + " /system/media/bootanimation.zip\n");
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//                System.out.println("Failed copying resource file");
-//            }
-//            outputStream.flush();
-//            outputStream.writeBytes("exit\n");
-//            su.waitFor();
-//            outputStream.close();
-//
-//
-//        }catch(Exception e){
-//            e.printStackTrace();
-//        }
         setContentView(R.layout.activity_main);
         this.finish();
     }
@@ -129,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 in = assetManager.open(filename);
                 File outFile = new File(getExternalFilesDir(null), filename);
-                //File outFile = new File("/system/media/", filename);
+
                 out = new FileOutputStream(outFile);
                 copyFile(in, out);
                 in.close();
